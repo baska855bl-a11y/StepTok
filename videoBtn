@@ -1,0 +1,1 @@
+const videoBtn = document.getElementById('uploadVideo'); 
