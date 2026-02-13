@@ -2,13 +2,18 @@
 <html lang="sk">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StepTok</title>
 </head>
 <body>
-  <h1>Vitaj na StepToku!</h1>
-  <p>Už čoskoro budete môcť pridávať videá.</p>
+  <h1>Vitaj na StepTok!</h1>
+  <p>Tu môžeš nahrávať fotky a videá.</p>
 
-  <button onclick="alert('Tu sa zobrazí fotka!')">Zobraziť fotku</button>
-  <button onclick="alert('Tu sa zobrazí video!')">Zobraziť video</button>
+  <button id="uploadPhoto">Nahrať fotku</button>
+  <button id="uploadVideo">Nahrať video</button>
+
+  <div id="preview"></div>
+
+  <script src="script.js"></script>
 </body>
 </html>
