@@ -1,150 +1,150 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StepTok - Registrácia a Prihlásenie</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StepTok - Registrácia a Prihlásenie</title>
 
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #fdf6f0, #ffe0e0);
-  margin: 0;
-  padding: 40px;
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  flex-wrap: wrap;
-}
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fdf6f0, #ffe0e0);
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
 
-.form-container {
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  width: 350px;
-}
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      width: 350px;
+    }
 
-h2 {
-  text-align: center;
-  color: #ff5555;
-}
+    h2 {
+      text-align: center;
+      color: #ff5555;
+    }
 
-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
 
-button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 12px;
-  background: #ff5555;
-  border: none;
-  color: white;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-}
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #ff5555;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+    }
 
-button:hover {
-  background: #ff2222;
-}
+    button:hover {
+      background: #ff2222;
+    }
 
-.hidden {
-  display: none;
-}
+    .hidden {
+      display: none;
+    }
 
-#profile {
-  text-align: center;
-}
-</style>
+    #profile {
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
-<!-- REGISTRÁCIA -->
-<div class="form-container" id="registerBox">
-<h2>Registrácia</h2>
-<input type="text" id="username" placeholder="Používateľské meno">
-<input type="email" id="email" placeholder="E-mail">
-<input type="password" id="password" placeholder="Heslo">
-<input type="password" id="confirmPassword" placeholder="Potvrdenie hesla">
-<button onclick="register()">Registrovať sa</button>
-</div>
+  <!-- REGISTRÁCIA -->
+  <div class="form-container" id="registerBox">
+    <h2>Registrácia</h2>
+    <input type="text" id="username" placeholder="Používateľské meno" required>
+    <input type="email" id="email" placeholder="E-mail" required>
+    <input type="password" id="password" placeholder="Heslo" required>
+    <input type="password" id="confirmPassword" placeholder="Potvrdenie hesla" required>
+    <button onclick="register()">Registrovať sa</button>
+  </div>
 
-<!-- PRIHLÁSENIE -->
-<div class="form-container" id="loginBox">
-<h2>Prihlásenie</h2>
-<input type="email" id="loginEmail" placeholder="E-mail">
-<input type="password" id="loginPassword" placeholder="Heslo">
-<button onclick="login()">Prihlásiť sa</button>
-</div>
+  <!-- PRIHLÁSENIE -->
+  <div class="form-container" id="loginBox">
+    <h2>Prihlásenie</h2>
+    <input type="email" id="loginEmail" placeholder="E-mail" required>
+    <input type="password" id="loginPassword" placeholder="Heslo" required>
+    <button onclick="login()">Prihlásiť sa</button>
+  </div>
 
-<!-- PROFIL -->
-<div class="form-container hidden" id="profileBox">
-<h2>Profil</h2>
-<p id="welcome"></p>
-<button onclick="logout()">Odhlásiť sa</button>
-</div>
+  <!-- PROFIL -->
+  <div class="form-container hidden" id="profileBox">
+    <h2>Profil</h2>
+    <p id="welcome"></p>
+    <button onclick="logout()">Odhlásiť sa</button>
+  </div>
 
-<script>
+  <script>
 
-// Registrácia
-function register(){
-  const username = document.getElementById("username").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const confirmPassword = document.getElementById("confirmPassword").value;
+    // Registrácia
+    function register(){
+      const username = document.getElementById("username").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const confirmPassword = document.getElementById("confirmPassword").value;
 
-  if(!username || !email || !password){
-    alert("Vyplň všetky polia");
-    return;
-  }
+      if(!username || !email || !password){
+        alert("Vyplň všetky polia");
+        return;
+      }
 
-  if(password !== confirmPassword){
-    alert("Heslá sa nezhodujú");
-    return;
-  }
+      if(password !== confirmPassword){
+        alert("Heslá sa nezhodujú");
+        return;
+      }
 
-  const user = {username, email, password};
-  localStorage.setItem("stepTokUser", JSON.stringify(user));
+      const user = {username, email, password};
+      localStorage.setItem("stepTokUser", JSON.stringify(user));
 
-  alert("Registrácia úspešná!");
-}
+      alert("Registrácia úspešná!");
+    }
 
-// Prihlásenie
-function login(){
-  const loginEmail = document.getElementById("loginEmail").value;
-  const loginPassword = document.getElementById("loginPassword").value;
+    // Prihlásenie
+    function login(){
+      const loginEmail = document.getElementById("loginEmail").value;
+      const loginPassword = document.getElementById("loginPassword").value;
 
-  const storedUser = JSON.parse(localStorage.getItem("stepTokUser"));
+      const storedUser = JSON.parse(localStorage.getItem("stepTokUser"));
 
-  if(!storedUser){
-    alert("Najprv sa musíš zaregistrovať");
-    return;
-  }
+      if(!storedUser){
+        alert("Najprv sa musíš zaregistrovať");
+        return;
+      }
 
-  if(loginEmail === storedUser.email && loginPassword === storedUser.password){
-    document.getElementById("registerBox").classList.add("hidden");
-    document.getElementById("loginBox").classList.add("hidden");
-    document.getElementById("profileBox").classList.remove("hidden");
-    document.getElementById("welcome").innerText = "Vitaj, " + storedUser.username + " 🎉";
-  } else {
-    alert("Nesprávne údaje");
-  }
-}
+      if(loginEmail === storedUser.email && loginPassword === storedUser.password){
+        document.getElementById("registerBox").classList.add("hidden");
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("profileBox").classList.remove("hidden");
+        document.getElementById("welcome").innerText = "Vitaj, " + storedUser.username + " 🎉";
+      } else {
+        alert("Nesprávne údaje");
+      }
+    }
 
-// Odhlásenie
-function logout(){
-  document.getElementById("profileBox").classList.add("hidden");
-  document.getElementById("registerBox").classList.remove("hidden");
-  document.getElementById("loginBox").classList.remove("hidden");
-}
+    // Odhlásenie
+    function logout(){
+      document.getElementById("profileBox").classList.add("hidden");
+      document.getElementById("registerBox").classList.remove("hidden");
+      document.getElementById("loginBox").classList.remove("hidden");
+    }
 
-</script>
+  </script>
 
 </body>
 </html>
