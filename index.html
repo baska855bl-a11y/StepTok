@@ -4,144 +4,193 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StepTok</title>
-
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: black;
-      color: white;
-      text-align: center;
+      transition: background-color 0.3s, color 0.3s;
+      display: flex;
+      justify-content: space-between;
+      height: 100vh;
       overflow: hidden;
     }
 
-    h1 {
-      margin-top: 20px;
-      font-size: 36px;
+    /* Svetlý a tmavý režim */
+    body.light {
+      background-color: #f1f1f1;
+      color: #000;
+    }
+    body.dark {
+      background-color: #121212;
+      color: #fff;
     }
 
-    /* Hlavné menu */
-    .menu {
-      position: fixed;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: rgba(0, 0, 0, 0.7);
-      padding: 10px;
-      border-radius: 10px;
-      width: 80%;
-      display: flex;
-      justify-content: space-around;
-      font-size: 18px;
-      z-index: 10;
-    }
-
-    .menu button {
-      background-color: transparent;
-      border: 1px solid white;
-      padding: 10px 20px;
-      color: white;
-      cursor: pointer;
-    }
-
-    .menu button:hover {
-      opacity: 0.8;
-    }
-
-    /* Zobrazenie obsahu fotiek a videí */
+    /* Hlavná ľavá časť */
     .content {
-      margin-top: 80px;
+      flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 70vh;
-      position: relative;
+      height: 100%;
+      flex-direction: column;
+      text-align: center;
+    }
+
+    /* Pravá sekcia (profil, prihlásenie, režim) */
+    .sidebar {
+      width: 250px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .sidebar button {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      transition: background-color 0.3s;
+    }
+
+    .sidebar button:hover {
+      background-color: #0056b3;
+    }
+
+    .sidebar input {
+      margin-top: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      width: 80%;
+    }
+
+    .sidebar .profile {
+      margin-top: 20px;
+    }
+
+    .sidebar .profile p {
+      margin: 5px 0;
+    }
+
+    .theme-toggle {
+      margin-top: 20px;
+    }
+
+    .theme-toggle button {
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #444;
+      color: white;
+      border: none;
+    }
+
+    /* Content area with media (images or videos) */
+    .media-container {
+      margin-top: 20px;
     }
 
     img, video {
       max-width: 90%;
-      max-height: 100%;
+      max-height: 70vh;
       border-radius: 10px;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+      transition: transform 0.3s ease-in-out;
     }
 
-    /* Akcie na médiu */
-    .media-actions {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      color: white;
-      display: flex;
-      gap: 15px;
-    }
-
-    .media-actions button {
-      background: rgba(0, 0, 0, 0.6);
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    /* Komentáre */
-    .comments {
-      position: absolute;
-      bottom: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.6);
-      color: white;
-      padding: 5px;
-      max-width: 80%;
-      border-radius: 10px;
-    }
-
-    .comments input {
-      width: 80%;
-      padding: 5px;
-      margin: 5px 0;
-      border: none;
-      border-radius: 5px;
-    }
-
-    .comments button {
-      padding: 5px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
+    img:hover, video:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
-<body>
+<body class="light">
 
-  <h1>StepTok</h1>
-  <p>Pozeraj fotky alebo videá!</p>
+  <!-- Ľavá časť (Aplikácia) -->
+  <div class="content">
+    <h1>StepTok</h1>
+    <p>Pozeraj fotky a videá!</p>
 
-  <!-- Hlavné menu -->
-  <div class="menu">
-    <button onclick="showFeed()">Domov</button>
-    <button onclick="login()">Prihlásenie</button>
+    <div id="contentArea" class="media-container">
+      <!-- Obsah sa bude dynamicky meniť -->
+    </div>
   </div>
 
-  <!-- Zobrazenie médií -->
-  <div id="contentArea" class="content"></div>
+  <!-- Pravá sekcia (Profil, Prihlásenie, Tmavý/Svetlý režim) -->
+  <div class="sidebar">
+    <!-- Prihlásenie -->
+    <div id="loginForm" class="login-form">
+      <input type="text" id="username" placeholder="Používateľské meno" />
+      <input type="password" id="password" placeholder="Heslo" />
+      <button onclick="login()">Prihlásiť</button>
+    </div>
+
+    <!-- Profil -->
+    <div id="profileSection" class="profile" style="display: none;">
+      <p id="profileUsername">Používateľ: </p>
+      <p>Popis profilu...</p>
+      <button onclick="logout()">Odhlásiť</button>
+    </div>
+
+    <!-- Tmavý/Svetlý režim -->
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Prepni režim</button>
+    </div>
+  </div>
 
   <script>
-    // Zoznam médií na zobrazenie (obrázky a videá)
+    let isDarkMode = false;
+    const body = document.querySelector('body');
+    const loginForm = document.getElementById('loginForm');
+    const profileSection = document.getElementById('profileSection');
+    const profileUsername = document.getElementById('profileUsername');
+
+    // Funkcia na prepínanie svetlého a tmavého režimu
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      body.className = isDarkMode ? 'dark' : 'light';
+    }
+
+    // Simulácia prihlásenia
+    function login() {
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+
+      // Simulácia, že prihlásenie je úspešné, ak má používateľ vyplnené meno a heslo
+      if (username && password) {
+        loginForm.style.display = 'none';
+        profileSection.style.display = 'block';
+        profileUsername.textContent = `Používateľ: ${username}`;
+      } else {
+        alert("Vyplňte používateľské meno a heslo!");
+      }
+    }
+
+    // Odhlásenie
+    function logout() {
+      loginForm.style.display = 'block';
+      profileSection.style.display = 'none';
+    }
+
+    // Dynamické zobrazenie médií (obrázkov a videí)
     const mediaList = [
       { type: "image", src: "https://picsum.photos/600/400?random=1" },
       { type: "video", src: "https://www.w3schools.com/html/mov_bbb.mp4" },
-      { type: "image", src: "https://picsum.photos/600/400?random=2" },
-      { type: "video", src: "https://www.w3schools.com/html/movie.mp4" }
+      { type: "image", src: "https://picsum.photos/600/400?random=2" }
     ];
 
     let index = 0;
     const contentArea = document.getElementById("contentArea");
 
-    // Funkcia na zobrazenie médií (obrázky, videá)
     function showNextMedia() {
-      contentArea.innerHTML = ""; // Vyčisti obsah
+      contentArea.innerHTML = "";
       const item = mediaList[index];
-
       const mediaContainer = document.createElement('div');
       mediaContainer.classList.add('media-container');
       
@@ -155,57 +204,19 @@
         video.autoplay = true;
         video.muted = true;
         video.playsInline = true;
-        video.onended = showNextMedia; // Po skončení videa, prejdeme na ďalší obsah
+        video.onended = showNextMedia;
         mediaContainer.appendChild(video);
       }
 
-      // Akcie na médiu (lajk, komentár)
-      const mediaActions = document.createElement("div");
-      mediaActions.classList.add("media-actions");
-      const likeButton = document.createElement("button");
-      likeButton.textContent = "❤️ Lajk";
-      mediaActions.appendChild(likeButton);
-
-      const commentButton = document.createElement("button");
-      commentButton.textContent = "💬 Komentovať";
-      mediaActions.appendChild(commentButton);
-
-      mediaContainer.appendChild(mediaActions);
-
-      // Komentáre
-      const commentSection = document.createElement("div");
-      commentSection.classList.add("comments");
-      const commentInput = document.createElement("input");
-      commentInput.type = "text";
-      commentInput.placeholder = "Pridaj komentár...";
-      commentSection.appendChild(commentInput);
-
-      const commentSubmit = document.createElement("button");
-      commentSubmit.textContent = "Pridať komentár";
-      commentSection.appendChild(commentSubmit);
-
-      mediaContainer.appendChild(commentSection);
       contentArea.appendChild(mediaContainer);
 
-      // Zobrazenie ďalšieho média
       index++;
       if (index >= mediaList.length) {
         index = 0; // Začne to opäť od začiatku
       }
     }
 
-    // Zobraziť Feed
-    function showFeed() {
-      showNextMedia();
-    }
-
-    // Funkcia pre prihlasovanie (príklad)
-    function login() {
-      alert("Prihlásenie funguje! Tu môžeš pridať autentifikáciu.");
-    }
-
-    // Automatické prechádzanie médiami
-    showFeed();
+    showNextMedia(); // Začať zobrazovanie médií
   </script>
 
 </body>
