@@ -1,6 +1,71 @@
+<!DOCTYPE html>
+<html>
 <head>
   <meta charset="UTF-8">
   <title>StepTok</title>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3315302280206559"
-     crossorigin="anonymous"></script>
+
+  <!-- ✅ Google AdSense overenie -->
+  <script async 
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3315302280206559"
+    crossorigin="anonymous">
+  </script>
+
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      height: 100vh;
+    }
+    video {
+      width: 100%;
+      height: 100vh;
+      object-fit: cover;
+      scroll-snap-align: start;
+    }
+  </style>
 </head>
+<body>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-storage.js";
+
+// 🔥 TU vlož svoju Firebase konfiguráciu
+const firebaseConfig = {
+  apiKey: "TU_VLOŽ_API_KEY",
+  authDomain: "TU_VLOŽ_PROJECT_ID.firebaseapp.com",
+  projectId: "TU_VLOŽ_PROJECT_ID",
+  storageBucket: "TU_VLOŽ_PROJECT_ID.appspot.com",
+  messagingSenderId: "TU_VLOŽ_SENDER_ID",
+  appId: "TU_VLOŽ_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+
+async function loadVideos() {
+  const videosSnapshot = await getDocs(collection(db, "videos"));
+  videosSnapshot.forEach(async (doc) => {
+    const data = doc.data();
+    const url = await getDownloadURL(ref(storage, data.path));
+
+    const videoEl = document.createElement("video");
+    videoEl.src = url;
+    videoEl.muted = true;
+    videoEl.autoplay = true;
+    videoEl.loop = true;
+    videoEl.playsInline = true;
+
+    document.body.appendChild(videoEl);
+  });
+}
+
+loadVideos();
+</script>
+
+</body>
+</html>
