@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StepTok - Profil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .profile-container {
+            width: 100%;
+            max-width: 800px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-header {
+            text-align: center;
+        }
+
+        .profile-header img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .profile-header h2 {
+            margin: 10px 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .profile-header p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .stats div {
+            text-align: center;
+        }
+
+        .stats div p {
+            font-size: 16px;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .grid-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .social-links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .social-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #555;
+            font-size: 18px;
+        }
+
+        .social-links a:hover {
+            color: #ff5555;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Profilová stránka -->
+<div class="profile-container">
+    <!-- Profilový obrázok a základné informácie -->
+    <div class="profile-header">
+        <img src="https://via.placeholder.com/120" alt="Profilová fotka">
+        <h2 id="username">Barbora Petrášková</h2>
+        <p id="bio">Kreatívna duša, milovník videí a fotografií.</p>
+        <button onclick="editProfile()">Upraviť profil</button>
+    </div>
+
+    <!-- Štatistiky -->
+    <div class="stats">
+        <div>
+            <p>Sledovatelia</p>
+            <p>150</p>
+        </div>
+        <div>
+            <p>Sleduješ</p>
+            <p>80</p>
+        </div>
+        <div>
+            <p>Príspevky</p>
+            <p>30</p>
+        </div>
+    </div>
+
+    <!-- Zoznam príspevkov (fotky/videá) -->
+    <div class="grid-container">
+        <img src="https://via.placeholder.com/300" alt="Príspevok 1">
+        <img src="https://via.placeholder.com/300" alt="Príspevok 2">
+        <img src="https://via.placeholder.com/300" alt="Príspevok 3">
+        <img src="https://via.placeholder.com/300" alt="Príspevok 4">
+        <img src="https://via.placeholder.com/300" alt="Príspevok 5">
+        <img src="https://via.placeholder.com/300" alt="Príspevok 6">
+    </div>
+
+    <!-- Sociálne odkazy -->
+    <div class="social-links">
+        <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        <a href="https://twitter.com" target="_blank">Twitter</a>
+        <a href="https://www.snapchat.com" target="_blank">Snapchat</a>
+    </div>
+</div>
+
+<script>
+    function editProfile() {
+        alert("Tu môžeš upravit svoj profil!");
+    }
+</script>
+
+</body>
+</html>
