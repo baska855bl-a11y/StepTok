@@ -25,7 +25,7 @@ img, video {
 
 <body>
 
-<div id="content"></div>
+<div id="obsah"></div>
 
 <script>
 const mediaList = [
@@ -35,7 +35,7 @@ const mediaList = [
 ];
 
 let index = 0;
-const container = document.getElementById("content");
+const container = document.getElementById("obsah");
 
 function showNext() {
   container.innerHTML = "";
@@ -46,8 +46,7 @@ function showNext() {
     const img = document.createElement("img");
     img.src = item.src;
     container.appendChild(img);
-
-    setTimeout(showNext, 3000); // fotka sa prepne po 3 sekundách
+    setTimeout(showNext, 3000);
   }
 
   if (item.type === "video") {
@@ -56,9 +55,7 @@ function showNext() {
     video.autoplay = true;
     video.muted = true;
     video.playsInline = true;
-
-    video.onended = showNext; // keď video skončí → ďalšie
-
+    video.onended = showNext;
     container.appendChild(video);
   }
 
