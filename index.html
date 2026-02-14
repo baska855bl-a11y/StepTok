@@ -113,11 +113,12 @@ function register(){
 
   alert("Registrácia úspešná!");
 
-  // Po registrácii automaticky prejdeme na profil
+  // Po registrácii presun na profil
   document.getElementById("registerBox").classList.add("hidden");
   document.getElementById("loginBox").classList.add("hidden");
   document.getElementById("profileBox").classList.remove("hidden");
   document.getElementById("welcome").innerText = "Vitaj, " + username + " 🎉";
+  console.log("User registered:", user);  // Logovanie používateľa do konzoly
 }
 
 // Prihlásenie
@@ -153,3 +154,4 @@ function logout(){
 
 </body>
 </html>
+
