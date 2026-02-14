@@ -1,165 +1,150 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StepTok - Registrácia a Prihlásenie</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #fdf6f0, #ffe0e0);
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      gap: 50px;
-      padding-top: 50px;
-    }
-    .form-container {
-      background-color: #fff;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-      width: 350px;
-      transition: transform 0.2s;
-    }
-    .form-container:hover {
-      transform: translateY(-5px);
-    }
-    h2 {
-      text-align: center;
-      color: #ff5555;
-      margin-bottom: 20px;
-    }
-    label {
-      display: block;
-      margin-top: 15px;
-      font-weight: bold;
-      color: #333;
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="password"],
-    input[type="date"],
-    select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      border-radius: 8px;
-      border: 1px solid #ccc;
-      box-sizing: border-box;
-      transition: border 0.2s;
-    }
-    input:focus {
-      border: 2px solid #ff5555;
-      outline: none;
-    }
-    .checkbox-group {
-      margin-top: 10px;
-    }
-    .checkbox-group label {
-      font-weight: normal;
-      color: #555;
-    }
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 12px;
-      background-color: #ff5555;
-      border: none;
-      color: white;
-      font-weight: bold;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: background 0.2s;
-    }
-    button:hover {
-      background-color: #ff2222;
-    }
-    .link {
-      display: block;
-      text-align: center;
-      margin-top: 12px;
-      color: #ff5555;
-      text-decoration: none;
-    }
-    .link:hover {
-      text-decoration: underline;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StepTok - Registrácia a Prihlásenie</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #fdf6f0, #ffe0e0);
+  margin: 0;
+  padding: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  width: 350px;
+}
+
+h2 {
+  text-align: center;
+  color: #ff5555;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  margin-top: 20px;
+  width: 100%;
+  padding: 12px;
+  background: #ff5555;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #ff2222;
+}
+
+.hidden {
+  display: none;
+}
+
+#profile {
+  text-align: center;
+}
+</style>
 </head>
 <body>
 
-  <!-- Registrácia -->
-  <div class="form-container">
-    <h2>Registrácia</h2>
-    <form>
-      <label for="fullname">Meno a priezvisko</label>
-      <input type="text" id="fullname" name="fullname" required>
+<!-- REGISTRÁCIA -->
+<div class="form-container" id="registerBox">
+<h2>Registrácia</h2>
+<input type="text" id="username" placeholder="Používateľské meno">
+<input type="email" id="email" placeholder="E-mail">
+<input type="password" id="password" placeholder="Heslo">
+<input type="password" id="confirmPassword" placeholder="Potvrdenie hesla">
+<button onclick="register()">Registrovať sa</button>
+</div>
 
-      <label for="username">Užívateľské meno (nickname)</label>
-      <input type="text" id="username" name="username" required>
+<!-- PRIHLÁSENIE -->
+<div class="form-container" id="loginBox">
+<h2>Prihlásenie</h2>
+<input type="email" id="loginEmail" placeholder="E-mail">
+<input type="password" id="loginPassword" placeholder="Heslo">
+<button onclick="login()">Prihlásiť sa</button>
+</div>
 
-      <label for="email">E-mail</label>
-      <input type="email" id="email" name="email" required>
+<!-- PROFIL -->
+<div class="form-container hidden" id="profileBox">
+<h2>Profil</h2>
+<p id="welcome"></p>
+<button onclick="logout()">Odhlásiť sa</button>
+</div>
 
-      <label for="password">Heslo</label>
-      <input type="password" id="password" name="password" required>
+<script>
 
-      <label for="confirm-password">Potvrdenie hesla</label>
-      <input type="password" id="confirm-password" name="confirm-password" required>
+// Registrácia
+function register(){
+  const username = document.getElementById("username").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirmPassword").value;
 
-      <label for="profile-pic">Profilová fotka (URL)</label>
-      <input type="text" id="profile-pic" name="profile-pic">
+  if(!username || !email || !password){
+    alert("Vyplň všetky polia");
+    return;
+  }
 
-      <label for="birthdate">Dátum narodenia</label>
-      <input type="date" id="birthdate" name="birthdate">
+  if(password !== confirmPassword){
+    alert("Heslá sa nezhodujú");
+    return;
+  }
 
-      <label for="gender">Pohlavie</label>
-      <select id="gender" name="gender">
-        <option value="">Vyber</option>
-        <option value="male">Muž</option>
-        <option value="female">Žena</option>
-        <option value="other">Iné</option>
-      </select>
+  const user = {username, email, password};
+  localStorage.setItem("stepTokUser", JSON.stringify(user));
 
-      <label for="bio">Bio / krátky popis</label>
-      <input type="text" id="bio" name="bio">
+  alert("Registrácia úspešná!");
+}
 
-      <label for="social">Prepojenie na sociálne siete</label>
-      <input type="text" id="social" name="social">
+// Prihlásenie
+function login(){
+  const loginEmail = document.getElementById("loginEmail").value;
+  const loginPassword = document.getElementById("loginPassword").value;
 
-      <div class="checkbox-group">
-        <label><input type="checkbox" required> Súhlasím s podmienkami používania</label>
-        <label><input type="checkbox" required> Súhlasím s ochranou osobných údajov</label>
-        <label><input type="checkbox"> Chcem dostávať newsletter a notifikácie</label>
-      </div>
+  const storedUser = JSON.parse(localStorage.getItem("stepTokUser"));
 
-      <button type="submit">Registrovať sa</button>
-      <a href="#" class="link">Už máte účet? Prihlásiť sa</a>
-    </form>
-  </div>
+  if(!storedUser){
+    alert("Najprv sa musíš zaregistrovať");
+    return;
+  }
 
-  <!-- Prihlásenie -->
-  <div class="form-container">
-    <h2>Prihlásenie</h2>
-    <form>
-      <label for="login-email">E-mail</label>
-      <input type="email" id="login-email" name="login-email" required>
+  if(loginEmail === storedUser.email && loginPassword === storedUser.password){
+    document.getElementById("registerBox").classList.add("hidden");
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("profileBox").classList.remove("hidden");
+    document.getElementById("welcome").innerText = "Vitaj, " + storedUser.username + " 🎉";
+  } else {
+    alert("Nesprávne údaje");
+  }
+}
 
-      <label for="login-password">Heslo</label>
-      <input type="password" id="login-password" name="login-password" required>
+// Odhlásenie
+function logout(){
+  document.getElementById("profileBox").classList.add("hidden");
+  document.getElementById("registerBox").classList.remove("hidden");
+  document.getElementById("loginBox").classList.remove("hidden");
+}
 
-      <div class="checkbox-group">
-        <label><input type="checkbox"> Zabudli ste heslo?</label>
-      </div>
-
-      <button type="submit">Prihlásiť sa</button>
-    </form>
-  </div>
+</script>
 
 </body>
 </html>
