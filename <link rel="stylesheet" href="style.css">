@@ -2,11 +2,9 @@
   width: 100%;
   max-width: 500px;
   padding: 20px;
-  background-image: url('your-image-url.jpg'); /* Obrázok ako pozadie */
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(145deg, #f0f0f0, #e0e0e0); /* Jemný gradient */
   border-radius: 10px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Jemný tieň */
   text-align: center;
-  color: white; /* Ak použiješ obrázok na pozadí, biela farba písma môže byť lepšia */
+  margin-top: 20px; /* Ak chceš, aby bol obsah od seba viac oddelený */
 }
