@@ -7,28 +7,37 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
+      background: linear-gradient(135deg, #fdf6f0, #ffe0e0);
+      margin: 0;
+      padding: 0;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 50px;
+      min-height: 100vh;
       gap: 50px;
+      padding-top: 50px;
     }
     .form-container {
       background-color: #fff;
       padding: 30px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
       width: 350px;
+      transition: transform 0.2s;
+    }
+    .form-container:hover {
+      transform: translateY(-5px);
     }
     h2 {
       text-align: center;
-      color: #333;
+      color: #ff5555;
+      margin-bottom: 20px;
     }
     label {
       display: block;
       margin-top: 15px;
       font-weight: bold;
+      color: #333;
     }
     input[type="text"],
     input[type="email"],
@@ -36,28 +45,36 @@
     input[type="date"],
     select {
       width: 100%;
-      padding: 8px;
+      padding: 10px;
       margin-top: 5px;
-      border-radius: 6px;
+      border-radius: 8px;
       border: 1px solid #ccc;
       box-sizing: border-box;
+      transition: border 0.2s;
+    }
+    input:focus {
+      border: 2px solid #ff5555;
+      outline: none;
     }
     .checkbox-group {
       margin-top: 10px;
     }
     .checkbox-group label {
       font-weight: normal;
+      color: #555;
     }
     button {
       margin-top: 20px;
       width: 100%;
-      padding: 10px;
+      padding: 12px;
       background-color: #ff5555;
       border: none;
       color: white;
       font-weight: bold;
-      border-radius: 6px;
+      border-radius: 10px;
       cursor: pointer;
+      font-size: 16px;
+      transition: background 0.2s;
     }
     button:hover {
       background-color: #ff2222;
@@ -65,8 +82,8 @@
     .link {
       display: block;
       text-align: center;
-      margin-top: 10px;
-      color: #555;
+      margin-top: 12px;
+      color: #ff5555;
       text-decoration: none;
     }
     .link:hover {
@@ -95,8 +112,8 @@
       <label for="confirm-password">Potvrdenie hesla</label>
       <input type="password" id="confirm-password" name="confirm-password" required>
 
-      <label for="profile-pic">Profilová fotka</label>
-      <input type="text" id="profile-pic" name="profile-pic" placeholder="URL obrázku">
+      <label for="profile-pic">Profilová fotka (URL)</label>
+      <input type="text" id="profile-pic" name="profile-pic">
 
       <label for="birthdate">Dátum narodenia</label>
       <input type="date" id="birthdate" name="birthdate">
