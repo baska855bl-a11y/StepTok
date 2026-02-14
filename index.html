@@ -1,9 +1,143 @@
-<h2>Registrácia</h2>
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Heslo">
-<button onclick="register()">Registrovať</button>
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StepTok – Registrácia</title>
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #0f0f2a, #010114);
+  color: white;
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 420px;
+  padding: 40px 20px;
+}
+
+h1, h2 {
+  text-align: center;
+}
+
+input, select {
+  width: 100%;
+  padding: 14px;
+  margin: 8px 0;
+  border-radius: 10px;
+  border: 1px solid #1e293b;
+  background: #0b1220;
+  color: white;
+  font-size: 14px;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #f43f5e;
+}
+
+button {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.google-btn {
+  background: #111827;
+  border: 1px solid #1f2937;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary-btn {
+  background: linear-gradient(90deg, #f43f5e, #3b82f6);
+  color: white;
+}
+
+.divider {
+  text-align: center;
+  margin: 20px 0;
+  color: #64748b;
+}
+
+.small-text {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.error {
+  color: #ef4444;
+  font-size: 12px;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 22px;
+  font-weight: bold;
+  color: #cbd5e1;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+<h1>Zaregistrovať sa</h1>
+
+<button class="google-btn">Pokračovať s Googlom</button>
+
+<div class="divider">alebo</div>
+
+<input type="text" placeholder="Meno">
+<input type="text" placeholder="Priezvisko (voliteľné)">
+<input type="email" placeholder="Email">
+
+<label>Narodeniny</label>
+<div style="display:flex; gap:5px;">
+  <select><option>Mesiac</option></select>
+  <select><option>Deň</option></select>
+  <select><option>Rok</option></select>
+</div>
+<div class="small-text" style="color:#f43f5e;">Musíte mať aspoň 13 rokov.</div>
+
+<input type="text" placeholder="Používateľské meno">
+<div class="small-text">Toto môžete neskôr zmeniť</div>
+
+<input type="password" placeholder="Heslo">
+<input type="password" placeholder="Potvrďte heslo">
+<div class="error">Heslo musí mať aspoň 8 znakov</div>
+
+<div class="small-text" style="margin-top:5px; color:#f43f5e;">
+  Registráciou súhlasíte s Podmienkami používania a Zásadami ochrany osobných údajov.
+</div>
+
+<button class="primary-btn">Pokračujem do registrácie</button>
+
+<hr style="margin:40px 0; border:1px solid #1e293b;">
 
 <h2>Prihlásenie</h2>
-<button onclick="login()">Prihlásiť</button>
 
-<p id="status"></p>
+<input type="text" placeholder="Email alebo tel. číslo">
+<input type="password" placeholder="Heslo">
+<div class="small-text">Zabudli ste heslo?</div>
+
+<button class="primary-btn">Prihlásiť sa</button>
+
+<div class="footer">StepTok</div>
+
+</div>
+</body>
+</html>
