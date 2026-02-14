@@ -1,24 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>StepTok</title>
+  <style>
+    body { margin: 0; background: black; display: flex; flex-direction: column; align-items: center; }
+    video { margin: 0; width: 100%; height: 100vh; object-fit: cover; }
+    .video-container { scroll-snap-type: y mandatory; overflow-y: scroll; height: 100vh; }
+    .video-container video { scroll-snap-align: start; }
+  </style>
+</head>
+<body>
+
+<div class="video-container" id="videoContainer"></div>
+
 <script type="module">
-  import { initializeApp, deleteApp, getApps } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-  import { getFirestore } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-storage.js";
 
-  // Konfigurácia tvojho projektu Firebase
-  const firebaseConfig = {
-    apiKey: "<YOUR_API_KEY>",
-    authDomain: "<YOUR_PROJECT_ID>.firebaseapp.com",
-    projectId: "<YOUR_PROJECT_ID>",
-    storageBucket: "<YOUR_PROJECT_ID>.appspot.com",
-    messagingSenderId: "<YOUR_SENDER_ID>",
-    appId: "<YOUR_APP_ID>"
-  };
+// Firebase konfigurácia
+const firebaseConfig = {
+  apiKey: "TU_VLOŽ_API_KEY",
+  authDomain: "TU_VLOŽ_PROJECT_ID.firebaseapp.com",
+  projectId: "TU_VLOŽ_PROJECT_ID",
+  storageBucket: "TU_VLOŽ_PROJECT_ID.appspot.com",
+  messagingSenderId: "TU_VLOŽ_SENDER_ID",
+  appId: "TU_VLOŽ_APP_ID"
+};
 
-  // Inicializácia Firebase App
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-  console.log("Firebase App inicializovaná:", app.name);
+const container = document.getElementById('videoContainer');
 
-  // Ak chceš ukončiť app
-  // deleteApp(app).then(() => console.log("Firebase App deleted"));
+async function loadVideos() {
+  const querySnapshot = await getDocs(collection(db, "videos"));
+  querySnapshot.forEach(async (doc) => {
+    const data = doc.data();
+    const videoURL = await getDownloadURL(ref(storage, data.path));
+    
+    const videoEl = document.createElement('video');
+    videoEl.src = videoURL;
+    videoEl.autoplay = true;
+    videoEl.loop = true;
+    videoEl.muted = true;
+    videoEl.controls = false;
+    
+    container.appendChild(videoEl);
+  });
+}
 
+loadVideos();
 </script>
+
+</body>
+</html>
