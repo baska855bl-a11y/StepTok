@@ -11,8 +11,8 @@
       font-family: Arial, sans-serif;
       background: black;
       color: white;
-      overflow: hidden;
       text-align: center;
+      overflow: hidden;
     }
 
     h1 {
@@ -50,7 +50,7 @@
 
     /* Zobrazenie obsahu fotiek a videí */
     .content {
-      margin-top: 100px;
+      margin-top: 80px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -114,6 +114,7 @@
 <body>
 
   <h1>StepTok</h1>
+  <p>Pozeraj fotky alebo videá!</p>
 
   <!-- Hlavné menu -->
   <div class="menu">
@@ -124,19 +125,19 @@
   <!-- Zobrazenie médií -->
   <div id="contentArea" class="content"></div>
 
-  <!-- Načítanie a zobrazenie médií -->
   <script>
     // Zoznam médií na zobrazenie (obrázky a videá)
     const mediaList = [
       { type: "image", src: "https://picsum.photos/600/400?random=1" },
       { type: "video", src: "https://www.w3schools.com/html/mov_bbb.mp4" },
-      { type: "image", src: "https://picsum.photos/600/400?random=2" }
+      { type: "image", src: "https://picsum.photos/600/400?random=2" },
+      { type: "video", src: "https://www.w3schools.com/html/movie.mp4" }
     ];
 
     let index = 0;
     const contentArea = document.getElementById("contentArea");
 
-    // Funkcia na zobrazenie médií
+    // Funkcia na zobrazenie médií (obrázky, videá)
     function showNextMedia() {
       contentArea.innerHTML = ""; // Vyčisti obsah
       const item = mediaList[index];
