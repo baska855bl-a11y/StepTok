@@ -1,10 +1,11 @@
 body {
     margin: 0;
     min-height: 100vh;
-    background: #000;
-    background-image:
-        radial-gradient(circle at 50% -20%, #ff4ecd 0%, transparent 50%),
-        radial-gradient(circle at 50% 0%, #6a5af9 0%, transparent 60%),
-        linear-gradient(180deg, #0f0c29, #000);
-    color: white;
+    background: linear-gradient(
+        90deg,
+        #ff0066 0%,
+        #c2188b 35%,
+        #7b1fa2 65%,
+        #3f51b5 100%
+    );
 }
