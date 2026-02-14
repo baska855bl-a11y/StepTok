@@ -126,7 +126,8 @@
   <div class="sidebar">
     <!-- Prihlásenie -->
     <div id="loginForm" class="login-form">
-      <input type="text" id="username" placeholder="Používateľské meno" />
+      <h2>Prihlásenie</h2>
+      <input type="text" id="loginInput" placeholder="Používateľské meno, E-mail alebo Telefón" />
       <input type="password" id="password" placeholder="Heslo" />
       <button onclick="login()">Prihlásiť</button>
     </div>
@@ -159,65 +160,21 @@
 
     // Simulácia prihlásenia
     function login() {
-      const username = document.getElementById('username').value;
+      const loginInput = document.getElementById('loginInput').value;
       const password = document.getElementById('password').value;
 
-      // Simulácia, že prihlásenie je úspešné, ak má používateľ vyplnené meno a heslo
-      if (username && password) {
+      // Simulácia, že prihlásenie je úspešné, ak má používateľ vyplnené meno/e-mail/telefón a heslo
+      if (loginInput && password) {
         loginForm.style.display = 'none';
         profileSection.style.display = 'block';
-        profileUsername.textContent = `Používateľ: ${username}`;
+        profileUsername.textContent = `Používateľ: ${loginInput}`;
       } else {
-        alert("Vyplňte používateľské meno a heslo!");
+        alert("Vyplňte prihlásenie a heslo!");
       }
     }
 
     // Odhlásenie
     function logout() {
       loginForm.style.display = 'block';
-      profileSection.style.display = 'none';
-    }
+      profileSection.style
 
-    // Dynamické zobrazenie médií (obrázkov a videí)
-    const mediaList = [
-      { type: "image", src: "https://picsum.photos/600/400?random=1" },
-      { type: "video", src: "https://www.w3schools.com/html/mov_bbb.mp4" },
-      { type: "image", src: "https://picsum.photos/600/400?random=2" }
-    ];
-
-    let index = 0;
-    const contentArea = document.getElementById("contentArea");
-
-    function showNextMedia() {
-      contentArea.innerHTML = "";
-      const item = mediaList[index];
-      const mediaContainer = document.createElement('div');
-      mediaContainer.classList.add('media-container');
-      
-      if (item.type === "image") {
-        const img = document.createElement("img");
-        img.src = item.src;
-        mediaContainer.appendChild(img);
-      } else if (item.type === "video") {
-        const video = document.createElement("video");
-        video.src = item.src;
-        video.autoplay = true;
-        video.muted = true;
-        video.playsInline = true;
-        video.onended = showNextMedia;
-        mediaContainer.appendChild(video);
-      }
-
-      contentArea.appendChild(mediaContainer);
-
-      index++;
-      if (index >= mediaList.length) {
-        index = 0; // Začne to opäť od začiatku
-      }
-    }
-
-    showNextMedia(); // Začať zobrazovanie médií
-  </script>
-
-</body>
-</html>
