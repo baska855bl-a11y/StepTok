@@ -1,10 +1,82 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5; /* Svetlé, neutrálné pozadie */
+  color: #333; /* Tmavšia textová farba pre lepšiu čitateľnosť */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
 .container {
   width: 100%;
   max-width: 500px;
-  padding: 20px;
-  background: linear-gradient(145deg, #f0f0f0, #e0e0e0); /* Jemný gradient */
-  border-radius: 10px;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Jemný tieň */
+  padding: 30px;
+  background-color: white; /* Biely obsah pre čistý vzhľad */
+  border-radius: 12px; /* Zaoblené rohy pre moderný vzhľad */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Jemný tieň okolo kontajnera */
   text-align: center;
-  margin-top: 20px; /* Ak chceš, aby bol obsah od seba viac oddelený */
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+input {
+  margin: 12px 0;
+  padding: 12px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+button {
+  padding: 12px;
+  width: 100%;
+  background-color: #007BFF; /* Moderná modrá farba */
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.alternative {
+  margin-top: 15px;
+}
+
+.alternative p {
+  font-size: 14px;
+}
+
+.google-btn {
+  background-color: #db4437;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  margin-top: 15px;
+  padding: 12px;
+}
+
+.google-btn:hover {
+  background-color: #c1351d;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 12px;
+}
+
+.checkbox-container input {
+  margin-right: 8px;
 }
