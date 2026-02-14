@@ -3,79 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StepTok – Tvoja platforma</title>
+    <title>StepTok</title>
+
     <style>
-        body {
+        * {
             margin: 0;
-            font-family: Arial, sans-serif;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
             background: linear-gradient(135deg, #ff4d6d, #3a86ff);
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            padding: 30px;
+            font-family: Arial, sans-serif;
         }
 
-        .container {
+        .wrapper {
             background: white;
-            width: 90%;
-            max-width: 1000px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            overflow: hidden;
             padding: 20px;
-            text-align: center;
-        }
-
-        img {
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+            max-width: 1200px;
             width: 100%;
-            border-radius: 10px;
         }
 
-        h1 {
-            margin-top: 20px;
+        .wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
         }
 
-        .buttons {
-            margin-top: 20px;
-        }
-
-        button {
-            padding: 12px 25px;
-            margin: 10px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .register {
-            background-color: #ff4d6d;
-            color: white;
-        }
-
-        .login {
-            background-color: #3a86ff;
-            color: white;
-        }
-
-        button:hover {
-            opacity: 0.9;
-        }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="wrapper">
         <img src="A_promotional_Slovak-language_landing_page_for_St.png" alt="StepTok Landing Page">
-
-        <h1>Vitaj na StepTok</h1>
-        <p>Pridaj sa ešte dnes a staň sa súčasťou kreatívnej komunity.</p>
-
-        <div class="buttons">
-            <button class="register">Zaregistrovať sa</button>
-            <button class="login">Prihlásiť sa</button>
-        </div>
     </div>
 
 </body>
