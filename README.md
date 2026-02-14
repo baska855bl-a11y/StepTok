@@ -1,72 +1,173 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>StepTok</title>
+  <meta charset="UTF-8">
+  <title>StepTok</title>
 
-<style>
-body {
-  margin: 0;
-  background: black;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial;
+      background: black;
+      color: white;
+      text-align: center;
+    }
 
-img, video {
-  max-width: 100%;
-  max-height: 100vh;
-  border-radius: 10px;
-}
-</style>
+    h1 {
+      margin-top: 20px;
+    }
+
+    .buttons {
+      margin: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .content {
+      margin-top: 20px;
+    }
+
+    img, video {
+      max-width: 90%;
+      max-height: 70vh;
+      border-radius: 10px;
+    }
+  </style>
 </head>
-
 <body>
 
-<div id="obsah"></div>
+<h1>StepTok</h1>
+<p>Pozeraj fotku alebo video.</p>
+
+<div class="buttons">
+  <button onclick="showImage()">Zobraziť fotku</button>
+  <button onclick="showVideo()">Zobraziť video</button>
+</div>
+
+<div class="content" id="contentArea"></div>
 
 <script>
-const mediaList = [
-  { type: "image", src: "https://picsum.photos/600/900?random=1" },
-  { type: "video", src: "https://www.w3schools.com/html/mov_bbb.mp4" },
-  { type: "image", src: "https://picsum.photos/600/900?random=2" }
-];
-
-let index = 0;
-const container = document.getElementById("obsah");
-
-function showNext() {
-  container.innerHTML = "";
-
-  const item = mediaList[index];
-
-  if (item.type === "image") {
-    const img = document.createElement("img");
-    img.src = item.src;
-    container.appendChild(img);
-    setTimeout(showNext, 3000);
-  }
-
-  if (item.type === "video") {
-    const video = document.createElement("video");
-    video.src = item.src;
-    video.autoplay = true;
-    video.muted = true;
-    video.playsInline = true;
-    video.onended = showNext;
-    container.appendChild(video);
-  }
-
-  index++;
-  if (index >= mediaList.length) {
-    index = 0;
-  }
+function showImage() {
+  document.getElementById("contentArea").innerHTML =
+    '<img src="https://picsum.photos/600/400" alt="Fotka">';
 }
 
-showNext();
+function showVideo() {
+  document.getElementById("contentArea").innerHTML =
+    '<video controls autoplay><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video>';
+}
 </script>
+
+</body>
+</html>
+
+<div id="feed" class="screen">
+    <div class="video-container">
+        <video class="video-player" src="video1.mp4" autoplay loop muted></video>
+        <div class="video-info">
+            <p>@username</p>
+            <p>Popis videa...</p>
+        </div>
+        <div class="video-actions">
+            <button>❤️</button>
+            <button>💬</button>
+            <button>🔄</button>
+        </div>
+    </div>
+</div>
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StepTok</title>
+    <style>
+        body {
+            margin: 0;
+            background: black;
+            color: white;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        img, video {
+            max-width: 100%;
+            max-height: 100vh;
+            border-radius: 10px;
+        }
+        #obsah {
+            width: 80%;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="obsah"></div>
+
+    <script>
+        // Zoznam médií na zobrazenie
+        const mediaList = [
+            { type: "image", src: "https://picsum.photos/600/900?random=1" },
+            { type: "video", src: "https://www.w3schools.com/html/mov_bbb.mp4" },
+            { type: "image", src: "https://picsum.photos/600/900?random=2" }
+        ];
+
+        let index = 0;
+        const container = document.getElementById("obsah");
+
+        // Funkcia na zobrazenie obrázkov alebo videí
+        function showNext() {
+            container.innerHTML = "";
+            const item = mediaList[index];
+            if (item.type === "image") {
+                const img = document.createElement("img");
+                img.src = item.src;
+                container.appendChild(img);
+                setTimeout(showNext, 3000); // Zobrazi ďalší obrázok po 3 sekundách
+            } else if (item.type === "video") {
+                const video = document.createElement("video");
+                video.src = item.src;
+                video.autoplay = true;
+                video.muted = true;
+                video.playsInline = true;
+                video.onended = showNext; // Po skončení videa zobraz ďalší obsah
+                container.appendChild(video);
+            }
+            index++;
+            if (index >= mediaList.length) {
+                index = 0; // Začne to opäť od začiatku
+            }
+        }
+
+        // Načítanie a zobrazenie obsahu z README.md
+        fetch('README.md')
+            .then(response => response.text())
+            .then(text => {
+                const markdownContent = text.replace(/\n/g, "<br>"); // Pre každý nový riadok pridáme <br>
+                container.innerHTML = markdownContent; // Zobrazíme obsah v div #obsah
+            })
+            .catch(error => {
+                console.error("Chyba pri načítaní README.md:", error);
+                container.innerHTML = "<p>Chyba pri načítaní obsahu README.md.</p>";
+            });
+
+        // Zobrazenie obsahu
+        showNext();
+    </script>
 
 </body>
 </html>
