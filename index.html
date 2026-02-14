@@ -11,145 +11,201 @@
       font-family: Arial, sans-serif;
       background: black;
       color: white;
-      text-align: center;
       overflow: hidden;
+      text-align: center;
     }
 
     h1 {
       margin-top: 20px;
+      font-size: 36px;
     }
 
-    .buttons {
-      margin: 20px;
+    /* Hlavné menu */
+    .menu {
+      position: fixed;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      border-radius: 10px;
+      width: 80%;
+      display: flex;
+      justify-content: space-around;
+      font-size: 18px;
+      z-index: 10;
     }
 
-    button {
+    .menu button {
+      background-color: transparent;
+      border: 1px solid white;
       padding: 10px 20px;
-      margin: 5px;
-      font-size: 16px;
-      border: none;
-      border-radius: 5px;
+      color: white;
       cursor: pointer;
     }
 
-    button:hover {
+    .menu button:hover {
       opacity: 0.8;
     }
 
+    /* Zobrazenie obsahu fotiek a videí */
     .content {
-      margin-top: 20px;
+      margin-top: 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 70vh;
+      position: relative;
     }
 
     img, video {
       max-width: 90%;
-      max-height: 70vh;
+      max-height: 100%;
       border-radius: 10px;
     }
 
-    #obsah {
-      width: 80%;
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    .video-container {
-      position: relative;
-      margin: 20px auto;
-      max-width: 90%;
-    }
-
-    .video-info {
+    /* Akcie na médiu */
+    .media-actions {
       position: absolute;
       bottom: 20px;
       left: 20px;
       color: white;
+      display: flex;
+      gap: 15px;
     }
 
-    .video-actions {
+    .media-actions button {
+      background: rgba(0, 0, 0, 0.6);
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    /* Komentáre */
+    .comments {
       position: absolute;
-      right: 20px;
-      bottom: 20px;
-      display: flex;
-      gap: 10px;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      padding: 5px;
+      max-width: 80%;
+      border-radius: 10px;
+    }
+
+    .comments input {
+      width: 80%;
+      padding: 5px;
+      margin: 5px 0;
+      border: none;
+      border-radius: 5px;
+    }
+
+    .comments button {
+      padding: 5px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
 
   <h1>StepTok</h1>
-  <p>Pozeraj fotku alebo video.</p>
 
-  <div class="buttons">
-    <button onclick="showImage()">Zobraziť fotku</button>
-    <button onclick="showVideo()">Zobraziť video</button>
+  <!-- Hlavné menu -->
+  <div class="menu">
+    <button onclick="showFeed()">Domov</button>
+    <button onclick="login()">Prihlásenie</button>
   </div>
 
-  <div class="content" id="contentArea"></div>
-  <div id="obsah"></div>
+  <!-- Zobrazenie médií -->
+  <div id="contentArea" class="content"></div>
 
+  <!-- Načítanie a zobrazenie médií -->
   <script>
-    // Funkcia na zobrazenie fotky
-    function showImage() {
-      document.getElementById("contentArea").innerHTML =
-        '<img src="https://picsum.photos/600/400" alt="Fotka">';
-    }
-
-    // Funkcia na zobrazenie videa
-    function showVideo() {
-      document.getElementById("contentArea").innerHTML =
-        '<video controls autoplay><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video>';
-    }
-
     // Zoznam médií na zobrazenie (obrázky a videá)
     const mediaList = [
-      { type: "image", src: "https://picsum.photos/600/900?random=1" },
+      { type: "image", src: "https://picsum.photos/600/400?random=1" },
       { type: "video", src: "https://www.w3schools.com/html/mov_bbb.mp4" },
-      { type: "image", src: "https://picsum.photos/600/900?random=2" }
+      { type: "image", src: "https://picsum.photos/600/400?random=2" }
     ];
 
     let index = 0;
-    const container = document.getElementById("obsah");
+    const contentArea = document.getElementById("contentArea");
 
-    // Funkcia na zobrazenie obrázkov alebo videí
-    function showNext() {
-      container.innerHTML = "";
+    // Funkcia na zobrazenie médií
+    function showNextMedia() {
+      contentArea.innerHTML = ""; // Vyčisti obsah
       const item = mediaList[index];
+
+      const mediaContainer = document.createElement('div');
+      mediaContainer.classList.add('media-container');
+      
       if (item.type === "image") {
         const img = document.createElement("img");
         img.src = item.src;
-        container.appendChild(img);
-        setTimeout(showNext, 3000); // Zobrazi ďalší obrázok po 3 sekundách
+        mediaContainer.appendChild(img);
       } else if (item.type === "video") {
         const video = document.createElement("video");
         video.src = item.src;
         video.autoplay = true;
         video.muted = true;
         video.playsInline = true;
-        video.onended = showNext; // Po skončení videa zobraz ďalší obsah
-        container.appendChild(video);
+        video.onended = showNextMedia; // Po skončení videa, prejdeme na ďalší obsah
+        mediaContainer.appendChild(video);
       }
+
+      // Akcie na médiu (lajk, komentár)
+      const mediaActions = document.createElement("div");
+      mediaActions.classList.add("media-actions");
+      const likeButton = document.createElement("button");
+      likeButton.textContent = "❤️ Lajk";
+      mediaActions.appendChild(likeButton);
+
+      const commentButton = document.createElement("button");
+      commentButton.textContent = "💬 Komentovať";
+      mediaActions.appendChild(commentButton);
+
+      mediaContainer.appendChild(mediaActions);
+
+      // Komentáre
+      const commentSection = document.createElement("div");
+      commentSection.classList.add("comments");
+      const commentInput = document.createElement("input");
+      commentInput.type = "text";
+      commentInput.placeholder = "Pridaj komentár...";
+      commentSection.appendChild(commentInput);
+
+      const commentSubmit = document.createElement("button");
+      commentSubmit.textContent = "Pridať komentár";
+      commentSection.appendChild(commentSubmit);
+
+      mediaContainer.appendChild(commentSection);
+      contentArea.appendChild(mediaContainer);
+
+      // Zobrazenie ďalšieho média
       index++;
       if (index >= mediaList.length) {
         index = 0; // Začne to opäť od začiatku
       }
     }
 
-    // Načítanie a zobrazenie obsahu z README.md
-    fetch('README.md')
-      .then(response => response.text())
-      .then(text => {
-        const markdownContent = text.replace(/\n/g, "<br>"); // Pre každý nový riadok pridáme <br>
-        container.innerHTML = markdownContent; // Zobrazíme obsah v div #obsah
-      })
-      .catch(error => {
-        console.error("Chyba pri načítaní README.md:", error);
-        container.innerHTML = "<p>Chyba pri načítaní obsahu README.md.</p>";
-      });
+    // Zobraziť Feed
+    function showFeed() {
+      showNextMedia();
+    }
 
-    // Zobrazenie médií na stránke
-    showNext();
+    // Funkcia pre prihlasovanie (príklad)
+    function login() {
+      alert("Prihlásenie funguje! Tu môžeš pridať autentifikáciu.");
+    }
+
+    // Automatické prechádzanie médiami
+    showFeed();
   </script>
 
 </body>
 </html>
-
