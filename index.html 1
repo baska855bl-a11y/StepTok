@@ -1,9 +1,1 @@
-<h2>Registrácia</h2>
-<input type="email" id="email" placeholder="Email">
-<input type="password" id="password" placeholder="Heslo">
-<button onclick="register()">Registrovať</button>
 
-<h2>Prihlásenie</h2>
-<button onclick="login()">Prihlásiť</button>
-
-<p id="status"></p>
