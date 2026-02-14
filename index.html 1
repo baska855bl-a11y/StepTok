@@ -8,30 +8,29 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      transition: background-color 0.3s, color 0.3s;
-      display: flex;
-      justify-content: space-between;
-      height: 100vh;
-      overflow: hidden;
       background-color: #f1f1f1;
       color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    /* Hlavné formuláre */
-    .login-container, .register-container {
+    .container {
       width: 100%;
-      padding: 20px;
       max-width: 400px;
+      padding: 20px;
       background-color: rgba(255, 255, 255, 0.8);
       border-radius: 10px;
       box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+      text-align: center;
     }
 
-    .login-container h2, .register-container h2 {
-      margin-bottom: 10px;
+    h2 {
+      margin-bottom: 20px;
     }
 
-    .login-container input, .register-container input {
+    input {
       margin: 10px 0;
       padding: 10px;
       width: 100%;
@@ -39,12 +38,7 @@
       border: 1px solid #ccc;
     }
 
-    .login-container .alternative, .register-container .alternative {
-      margin-top: 10px;
-      text-align: center;
-    }
-
-    .login-container button, .register-container button {
+    button {
       padding: 10px;
       width: 100%;
       border-radius: 5px;
@@ -54,11 +48,23 @@
       margin-top: 15px;
     }
 
-    .login-container button:hover, .register-container button:hover {
+    button:hover {
       background-color: #0056b3;
     }
 
-    /* Tmavý a svetlý režim */
+    .alternative {
+      margin-top: 10px;
+    }
+
+    .alternative a {
+      color: #007BFF;
+      text-decoration: none;
+    }
+
+    .alternative a:hover {
+      text-decoration: underline;
+    }
+
     .theme-toggle {
       margin-top: 20px;
     }
@@ -74,42 +80,108 @@
 </head>
 <body>
 
-  <!-- Hlavný obsah stránky -->
-  <div class="content" style="flex: 1; display: flex; justify-content: center; align-items: center; height: 100%; flex-direction: column; text-align: center;">
-    <h1>StepTok</h1>
-    <p>Pozeraj fotky a videá!</p>
-
-    <!-- Sekcia prihlásenia -->
-    <div class="login-container" id="loginForm">
-      <h2>Log in to StepTok</h2>
-      <input type="text" id="loginInput" placeholder="Username or Email">
-      <input type="password" id="passwordInput" placeholder="Password">
-      
-      <div class="alternative">
-        <label>
-          <input type="checkbox" id="usePhone" /> Use phone number instead
-        </label>
-      </div>
-      <button onclick="login()">Log In</button>
-
-      <p class="alternative">Don't have an account? <a href="javascript:void(0);" onclick="toggleRegister()">Sign up here</a></p>
+  <!-- Kontajner pre prihlasenie a registráciu -->
+  <div class="container">
+    <h2>Log in to StepTok</h2>
+    <!-- Prihlasovací formulár -->
+    <input type="text" id="loginInput" placeholder="Username or Email" />
+    <input type="password" id="passwordInput" placeholder="Password" />
+    
+    <!-- Checkbox na použitie telefónneho čísla -->
+    <div class="alternative">
+      <label>
+        <input type="checkbox" id="usePhone" /> Use phone number instead
+      </label>
     </div>
 
-    <!-- Sekcia registrácie -->
-    <div class="register-container" id="registerForm" style="display: none;">
+    <!-- Tlačidlo na prihlásenie -->
+    <button onclick="login()">Log In</button>
+
+    <!-- Odkaz na registráciu -->
+    <div class="alternative">
+      <p>Don't have an account? <a href="javascript:void(0);" onclick="toggleRegister()">Sign up here</a></p>
+    </div>
+
+    <!-- Formulár pre registráciu -->
+    <div id="registerForm" style="display: none;">
       <h2>Sign up to StepTok</h2>
-      <input type="text" id="registerUsername" placeholder="Choose a username">
-      <input type="email" id="registerEmail" placeholder="Email">
-      <input type="password" id="registerPassword" placeholder="Create a password">
+      <input type="text" id="registerUsername" placeholder="Choose a username" />
+      <input type="email" id="registerEmail" placeholder="Email" />
+      <input type="password" id="registerPassword" placeholder="Create a password" />
       <button onclick="register()">Sign Up</button>
-
-      <p class="alternative">Already have an account? <a href="javascript:void(0);" onclick="toggleLogin()">Log in here</a></p>
+      <div class="alternative">
+        <p>Already have an account? <a href="javascript:void(0);" onclick="toggleLogin()">Log in here</a></p>
+      </div>
     </div>
-  </div>
 
-  <!-- Tmavý/Svetlý režim -->
-  <div class="theme-toggle" style="position: fixed; bottom: 20px; right: 20px;">
-    <button onclick="toggleTheme()">Toggle Theme</button>
+    <!-- Prepínanie medzi svetlým a tmavým režimom -->
+    <div class="theme-toggle">
+      <button onclick="toggleTheme()">Toggle Theme</button>
+    </div>
   </div>
 
   <script>
+    let isDarkMode = false;
+    const body = document.querySelector('body');
+    const loginInput = document.getElementById('loginInput');
+    const passwordInput = document.getElementById('passwordInput');
+    const registerUsername = document.getElementById('registerUsername');
+    const registerEmail = document.getElementById('registerEmail');
+    const registerPassword = document.getElementById('registerPassword');
+    const usePhoneCheckbox = document.getElementById('usePhone');
+    const loginForm = document.querySelector('.container');
+    const registerForm = document.getElementById('registerForm');
+
+    // Funkcia na prepnutie na registráciu
+    function toggleRegister() {
+      loginForm.style.display = 'none';
+      registerForm.style.display = 'block';
+    }
+
+    // Funkcia na prepnutie späť na prihlásenie
+    function toggleLogin() {
+      loginForm.style.display = 'block';
+      registerForm.style.display = 'none';
+    }
+
+    // Funkcia na prihlásenie
+    function login() {
+      const loginValue = loginInput.value;
+      const password = passwordInput.value;
+
+      if (loginValue && password) {
+        if (usePhoneCheckbox.checked) {
+          alert("Login via phone number: " + loginValue);
+        } else {
+          alert("Login via username or email: " + loginValue);
+        }
+        alert("Successfully logged in!");
+      } else {
+        alert("Please enter your username/email and password!");
+      }
+    }
+
+    // Funkcia na registráciu
+    function register() {
+      const username = registerUsername.value;
+      const email = registerEmail.value;
+      const password = registerPassword.value;
+
+      if (username && email && password) {
+        alert(`Successfully registered with username: ${username} and email: ${email}`);
+        toggleLogin(); // Prepneme späť na prihlásenie po registrácii
+      } else {
+        alert("Please fill all registration fields!");
+      }
+    }
+
+    // Funkcia na prepínanie medzi svetlým a tmavým režimom
+    function toggleTheme() {
+      isDarkMode = !isDarkMode;
+      body.style.backgroundColor = isDarkMode ? '#121212' : '#f1f1f1';
+      body.style.color = isDarkMode ? '#fff' : '#000';
+    }
+  </script>
+
+</body>
+</html>
