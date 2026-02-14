@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StepTok - Registrácia a Prihlásenie</title>
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: linear-gradient(135deg, #fdf6f0, #ffe0e0);
-  margin: 0;
-  padding: 40px;
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  flex-wrap: wrap;
-}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StepTok - Registrácia a Prihlásenie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #fdf6f0, #ffe0e0);
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      gap: 50px;
+      flex-wrap: wrap;
+    }
 
-.form-container {
-  background: white;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  width: 350px;
-}
+    .form-container {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      width: 350px;
+    }
 
-h2 {
-  text-align: center;
-  color: #ff5555;
-}
+    h2 {
+      text-align: center;
+      color: #ff5555;
+    }
 
-input {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
 
-button {
-  margin-top: 20px;
-  width: 100%;
-  padding: 12px;
-  background: #ff5555;
-  border: none;
-  color: white;
-  font-weight: bold;
-  border-radius: 10px;
-  cursor: pointer;
-}
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background: #ff5555;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+    }
 
-button:hover {
-  background: #ff2222;
-}
+    button:hover {
+      background: #ff2222;
+    }
 
-.hidden {
-  display: none;
-}
+    .hidden {
+      display: none;
+    }
 
-#profile {
-  text-align: center;
-}
-</style>
+    #profile {
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
 
@@ -108,6 +108,7 @@ function register(){
     return;
   }
 
+  // Uloženie údajov do localStorage
   const user = {username, email, password};
   localStorage.setItem("stepTokUser", JSON.stringify(user));
 
@@ -133,9 +134,10 @@ function login(){
     return;
   }
 
+  // Overenie údajov pri prihlásení
   if(loginEmail === storedUser.email && loginPassword === storedUser.password){
-    document.getElementById("registerBox").classList.add("hidden");
     document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("registerBox").classList.add("hidden");
     document.getElementById("profileBox").classList.remove("hidden");
     document.getElementById("welcome").innerText = "Vitaj, " + storedUser.username + " 🎉";
   } else {
@@ -146,12 +148,11 @@ function login(){
 // Odhlásenie
 function logout(){
   document.getElementById("profileBox").classList.add("hidden");
-  document.getElementById("registerBox").classList.remove("hidden");
   document.getElementById("loginBox").classList.remove("hidden");
+  document.getElementById("registerBox").classList.remove("hidden");
 }
 
 </script>
 
 </body>
 </html>
-
