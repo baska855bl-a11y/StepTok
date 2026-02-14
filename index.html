@@ -2,69 +2,67 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>StepTok</title>
-
-  <!-- ✅ Google AdSense overenie -->
-  <script async 
-    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3315302280206559"
-    crossorigin="anonymous">
-  </script>
+  <title>Moja stránka - Video & Fotka</title>
 
   <style>
     body {
+      font-family: Arial;
+      text-align: center;
+      background: #111;
+      color: white;
       margin: 0;
-      background: black;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
-      height: 100vh;
+      padding: 20px;
     }
-    video {
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    .box {
+      margin: 20px auto;
+      padding: 20px;
+      background: #222;
+      border-radius: 10px;
+      max-width: 600px;
+    }
+
+    img, video {
       width: 100%;
-      height: 100vh;
-      object-fit: cover;
-      scroll-snap-align: start;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    input {
+      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
-import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-storage.js";
+<h1>Moja stránka</h1>
 
-// 🔥 TU vlož svoju Firebase konfiguráciu
-const firebaseConfig = {
-  apiKey: "TU_VLOŽ_API_KEY",
-  authDomain: "TU_VLOŽ_PROJECT_ID.firebaseapp.com",
-  projectId: "TU_VLOŽ_PROJECT_ID",
-  storageBucket: "TU_VLOŽ_PROJECT_ID.appspot.com",
-  messagingSenderId: "TU_VLOŽ_SENDER_ID",
-  appId: "TU_VLOŽ_APP_ID"
-};
+<div class="box">
+  <h2>Pridaj fotku</h2>
+  <input type="file" accept="image/*" onchange="loadImage(event)">
+  <img id="imagePreview">
+</div>
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const storage = getStorage(app);
+<div class="box">
+  <h2>Pridaj video</h2>
+  <input type="file" accept="video/*" onchange="loadVideo(event)">
+  <video id="videoPreview" controls></video>
+</div>
 
-async function loadVideos() {
-  const videosSnapshot = await getDocs(collection(db, "videos"));
-  videosSnapshot.forEach(async (doc) => {
-    const data = doc.data();
-    const url = await getDownloadURL(ref(storage, data.path));
-
-    const videoEl = document.createElement("video");
-    videoEl.src = url;
-    videoEl.muted = true;
-    videoEl.autoplay = true;
-    videoEl.loop = true;
-    videoEl.playsInline = true;
-
-    document.body.appendChild(videoEl);
-  });
+<script>
+function loadImage(event) {
+  const image = document.getElementById("imagePreview");
+  image.src = URL.createObjectURL(event.target.files[0]);
 }
 
-loadVideos();
+function loadVideo(event) {
+  const video = document.getElementById("videoPreview");
+  video.src = URL.createObjectURL(event.target.files[0]);
+}
 </script>
 
 </body>
