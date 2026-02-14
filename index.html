@@ -1,50 +1,148 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StepTok</title>
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            background: linear-gradient(135deg, #ff4d6d, #3a86ff);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px;
-            font-family: Arial, sans-serif;
-        }
-
-        .wrapper {
-            background: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-            max-width: 1200px;
-            width: 100%;
-        }
-
-        .wrapper img {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 15px;
-        }
-
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StepTok - Registrácia a Prihlásenie</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 50px;
+      gap: 50px;
+    }
+    .form-container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 350px;
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    }
+    .checkbox-group {
+      margin-top: 10px;
+    }
+    .checkbox-group label {
+      font-weight: normal;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #ff5555;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #ff2222;
+    }
+    .link {
+      display: block;
+      text-align: center;
+      margin-top: 10px;
+      color: #555;
+      text-decoration: none;
+    }
+    .link:hover {
+      text-decoration: underline;
+    }
+  </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <img src="A_promotional_Slovak-language_landing_page_for_St.png" alt="StepTok Landing Page">
-    </div>
+  <!-- Registrácia -->
+  <div class="form-container">
+    <h2>Registrácia</h2>
+    <form>
+      <label for="fullname">Meno a priezvisko</label>
+      <input type="text" id="fullname" name="fullname" required>
+
+      <label for="username">Užívateľské meno (nickname)</label>
+      <input type="text" id="username" name="username" required>
+
+      <label for="email">E-mail</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="password">Heslo</label>
+      <input type="password" id="password" name="password" required>
+
+      <label for="confirm-password">Potvrdenie hesla</label>
+      <input type="password" id="confirm-password" name="confirm-password" required>
+
+      <label for="profile-pic">Profilová fotka</label>
+      <input type="text" id="profile-pic" name="profile-pic" placeholder="URL obrázku">
+
+      <label for="birthdate">Dátum narodenia</label>
+      <input type="date" id="birthdate" name="birthdate">
+
+      <label for="gender">Pohlavie</label>
+      <select id="gender" name="gender">
+        <option value="">Vyber</option>
+        <option value="male">Muž</option>
+        <option value="female">Žena</option>
+        <option value="other">Iné</option>
+      </select>
+
+      <label for="bio">Bio / krátky popis</label>
+      <input type="text" id="bio" name="bio">
+
+      <label for="social">Prepojenie na sociálne siete</label>
+      <input type="text" id="social" name="social">
+
+      <div class="checkbox-group">
+        <label><input type="checkbox" required> Súhlasím s podmienkami používania</label>
+        <label><input type="checkbox" required> Súhlasím s ochranou osobných údajov</label>
+        <label><input type="checkbox"> Chcem dostávať newsletter a notifikácie</label>
+      </div>
+
+      <button type="submit">Registrovať sa</button>
+      <a href="#" class="link">Už máte účet? Prihlásiť sa</a>
+    </form>
+  </div>
+
+  <!-- Prihlásenie -->
+  <div class="form-container">
+    <h2>Prihlásenie</h2>
+    <form>
+      <label for="login-email">E-mail</label>
+      <input type="email" id="login-email" name="login-email" required>
+
+      <label for="login-password">Heslo</label>
+      <input type="password" id="login-password" name="login-password" required>
+
+      <div class="checkbox-group">
+        <label><input type="checkbox"> Zabudli ste heslo?</label>
+      </div>
+
+      <button type="submit">Prihlásiť sa</button>
+    </form>
+  </div>
 
 </body>
 </html>
