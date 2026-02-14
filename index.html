@@ -7,7 +7,6 @@
     body {
       margin: 0;
       background: black;
-      color: white;
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
       height: 100vh;
@@ -23,43 +22,43 @@
 <body>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
-  import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
-  import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-storage.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-app.js";
+import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-firestore.js";
+import { getStorage, ref, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.0.0/firebase-storage.js";
 
-  // 💡 TU vlož svoju Firebase konfiguráciu
-  const firebaseConfig = {
-    apiKey: "TVOJ_API_KEY",
-    authDomain: "TVOJ_PROJECT_ID.firebaseapp.com",
-    projectId: "TVOJ_PROJECT_ID",
-    storageBucket: "TVOJ_PROJECT_ID.appspot.com",
-    messagingSenderId: "TVOJ_SENDER_ID",
-    appId: "TVOJ_APP_ID"
-  };
+// 💡 TU vlož svoju Firebase konfiguráciu
+const firebaseConfig = {
+  apiKey: "TU_VLOŽ_API_KEY",
+  authDomain: "TU_VLOŽ_PROJECT_ID.firebaseapp.com",
+  projectId: "TU_VLOŽ_PROJECT_ID",
+  storageBucket: "TU_VLOŽ_PROJECT_ID.appspot.com",
+  messagingSenderId: "TU_VLOŽ_SENDER_ID",
+  appId: "TU_VLOŽ_APP_ID"
+};
 
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
-  const storage = getStorage(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
 
-  async function loadVideos() {
-    const videosSnapshot = await getDocs(collection(db, "videos"));
-    videosSnapshot.forEach(async (doc) => {
-      const data = doc.data();
-      const url = await getDownloadURL(ref(storage, data.path));
+async function loadVideos() {
+  const videosSnapshot = await getDocs(collection(db, "videos"));
+  videosSnapshot.forEach(async (doc) => {
+    const data = doc.data();
+    const url = await getDownloadURL(ref(storage, data.path));
 
-      const videoEl = document.createElement("video");
-      videoEl.src = url;
-      videoEl.muted = true;
-      videoEl.autoplay = true;
-      videoEl.loop = true;
-      videoEl.playsInline = true;
-      videoEl.controls = false;
+    const videoEl = document.createElement("video");
+    videoEl.src = url;
+    videoEl.muted = true;
+    videoEl.autoplay = true;
+    videoEl.loop = true;
+    videoEl.playsInline = true;
+    videoEl.controls = false;
 
-      document.body.appendChild(videoEl);
-    });
-  }
+    document.body.appendChild(videoEl);
+  });
+}
 
-  loadVideos();
+loadVideos();
 </script>
 
 </body>
