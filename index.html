@@ -1,159 +1,82 @@
 <!DOCTYPE html>
 <html lang="sk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StepTok – Registrácia</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StepTok – Tvoja platforma</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff4d6d, #3a86ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
 
-<style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: linear-gradient(180deg, #0f0f2a, #010114);
-  color: white;
-  display: flex;
-  justify-content: center;
-}
+        .container {
+            background: white;
+            width: 90%;
+            max-width: 1000px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            overflow: hidden;
+            padding: 20px;
+            text-align: center;
+        }
 
-.container {
-  width: 100%;
-  max-width: 420px;
-  padding: 40px 20px;
-}
+        img {
+            width: 100%;
+            border-radius: 10px;
+        }
 
-h1, h2 {
-  text-align: center;
-}
+        h1 {
+            margin-top: 20px;
+        }
 
-input, select {
-  width: 100%;
-  padding: 14px;
-  margin: 8px 0;
-  border-radius: 10px;
-  border: 1px solid #1e293b;
-  background: #0b1220;
-  color: white;
-  font-size: 14px;
-}
+        .buttons {
+            margin-top: 20px;
+        }
 
-input:focus, select:focus {
-  outline: none;
-  border-color: #f43f5e;
-}
+        button {
+            padding: 12px 25px;
+            margin: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
 
-button {
-  width: 100%;
-  padding: 14px;
-  border-radius: 12px;
-  border: none;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
-}
+        .register {
+            background-color: #ff4d6d;
+            color: white;
+        }
 
-.google-btn {
-  background: #111827;
-  border: 1px solid #1f2937;
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+        .login {
+            background-color: #3a86ff;
+            color: white;
+        }
 
-.primary-btn {
-  background: linear-gradient(90deg, #f43f5e, #3b82f6);
-  color: white;
-}
-
-.divider {
-  text-align: center;
-  margin: 20px 0;
-  color: #64748b;
-}
-
-.small-text {
-  font-size: 12px;
-  color: #94a3b8;
-}
-
-.error {
-  color: #ef4444;
-  font-size: 12px;
-}
-
-.footer {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 22px;
-  font-weight: bold;
-  color: #cbd5e1;
-}
-
-.blog-link {
-  text-align: center;
-  margin-top: 5px;
-  font-size: 14px;
-  color: #3b82f6;
-  text-decoration: underline;
-}
-</style>
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
 </head>
-
 <body>
-<div class="container">
 
-<h1>Zaregistrovať sa</h1>
+    <div class="container">
+        <img src="A_promotional_Slovak-language_landing_page_for_St.png" alt="StepTok Landing Page">
 
-<button class="google-btn">Pokračovať s Googlom</button>
+        <h1>Vitaj na StepTok</h1>
+        <p>Pridaj sa ešte dnes a staň sa súčasťou kreatívnej komunity.</p>
 
-<div class="divider">alebo</div>
+        <div class="buttons">
+            <button class="register">Zaregistrovať sa</button>
+            <button class="login">Prihlásiť sa</button>
+        </div>
+    </div>
 
-<input type="text" placeholder="Meno">
-<input type="text" placeholder="Priezvisko (voliteľné)">
-<input type="email" placeholder="Email">
-
-<label>Narodeniny</label>
-<div style="display:flex; gap:5px;">
-  <select><option>Mesiac</option></select>
-  <select><option>Deň</option></select>
-  <select><option>Rok</option></select>
-</div>
-<div class="small-text" style="color:#f43f5e;">Musíte mať aspoň 13 rokov.</div>
-
-<input type="text" placeholder="Používateľské meno">
-<div class="small-text">Toto môžete neskôr zmeniť</div>
-
-<input type="password" placeholder="Heslo">
-<input type="password" placeholder="Potvrďte heslo">
-<div class="error">Heslo musí mať aspoň 8 znakov</div>
-
-<div class="small-text" style="margin-top:5px; color:#f43f5e;">
-  Registráciou súhlasíte s Podmienkami používania a Zásadami ochrany osobných údajov.
-</div>
-
-<button class="primary-btn">Pokračujem do registrácie</button>
-
-<hr style="margin:40px 0; border:1px solid #1e293b;">
-
-<h2>Prihlásenie</h2>
-
-<input type="text" placeholder="Email alebo tel. číslo">
-<input type="password" placeholder="Heslo">
-<div class="small-text">Zabudli ste heslo?</div>
-
-<button class="primary-btn">Prihlásiť sa</button>
-
-<div class="small-text" style="text-align:center; margin-top:20px; color:#94a3b8;">
-  Aplikácia na <b>zdielanie videí a fotiek</b>. Nahraj svoje momenty a zdieľaj s priateľmi.
-</div>
-
-<div class="blog-link">
-  <a href="https://tvojblog.sk/step-tok" target="_blank">Viac o StepTok</a>
-</div>
-
-<div class="footer">StepTok</div>
-
-</div>
 </body>
 </html>
