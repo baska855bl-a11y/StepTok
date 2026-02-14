@@ -2,66 +2,70 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Moja stránka - Video & Fotka</title>
+  <title>StepTok</title>
 
   <style>
     body {
-      font-family: Arial;
-      text-align: center;
-      background: #111;
-      color: white;
       margin: 0;
-      padding: 20px;
+      font-family: Arial;
+      background: black;
+      color: white;
+      text-align: center;
     }
 
     h1 {
-      margin-bottom: 30px;
+      margin-top: 20px;
     }
 
-    .box {
-      margin: 20px auto;
-      padding: 20px;
-      background: #222;
-      border-radius: 10px;
-      max-width: 600px;
+    .buttons {
+      margin: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 5px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    .content {
+      margin-top: 20px;
     }
 
     img, video {
-      width: 100%;
+      max-width: 90%;
+      max-height: 70vh;
       border-radius: 10px;
-      margin-top: 10px;
-    }
-
-    input {
-      margin-top: 10px;
     }
   </style>
 </head>
 <body>
 
-<h1>Moja stránka</h1>
+<h1>StepTok</h1>
+<p>Pozeraj fotku alebo video.</p>
 
-<div class="box">
-  <h2>Pridaj fotku</h2>
-  <input type="file" accept="image/*" onchange="loadImage(event)">
-  <img id="imagePreview">
+<div class="buttons">
+  <button onclick="showImage()">Zobraziť fotku</button>
+  <button onclick="showVideo()">Zobraziť video</button>
 </div>
 
-<div class="box">
-  <h2>Pridaj video</h2>
-  <input type="file" accept="video/*" onchange="loadVideo(event)">
-  <video id="videoPreview" controls></video>
-</div>
+<div class="content" id="contentArea"></div>
 
 <script>
-function loadImage(event) {
-  const image = document.getElementById("imagePreview");
-  image.src = URL.createObjectURL(event.target.files[0]);
+function showImage() {
+  document.getElementById("contentArea").innerHTML =
+    '<img src="https://picsum.photos/600/400" alt="Fotka">';
 }
 
-function loadVideo(event) {
-  const video = document.getElementById("videoPreview");
-  video.src = URL.createObjectURL(event.target.files[0]);
+function showVideo() {
+  document.getElementById("contentArea").innerHTML =
+    '<video controls autoplay><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4"></video>';
 }
 </script>
 
