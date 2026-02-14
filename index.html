@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StepTok - Prihlásenie</title>
+  <title>StepTok - Registrácia</title>
   <style>
     body {
       margin: 0;
@@ -18,9 +18,9 @@
 
     .container {
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;
       padding: 20px;
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(255, 255, 255, 0.9);
       border-radius: 10px;
       box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
       text-align: center;
@@ -64,36 +64,109 @@
     .alternative a:hover {
       text-decoration: underline;
     }
+
+    .google-btn {
+      background-color: #db4437;
+      color: white;
+      font-weight: bold;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+
+    .google-btn:hover {
+      background-color: #c1351d;
+    }
+
+    .checkbox-container {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-top: 15px;
+    }
+
+    .checkbox-container input {
+      margin-right: 10px;
+    }
+
+    .form-step {
+      margin-top: 20px;
+    }
+
+    .form-step button {
+      background-color: #4CAF50;
+    }
   </style>
 </head>
 <body>
 
-  <!-- Kontajner pre prihlásenie -->
+  <!-- Kontajner pre registráciu -->
   <div class="container">
-    <h2>Log in to StepTok</h2>
+    <h2>Zaregistrovať sa</h2>
+    <p>Krok 1 z 3</p>
 
-    <!-- Polia pre prihlásenie: používateľské meno, e-mail alebo telefón -->
-    <input type="text" id="loginInput" placeholder="Username, Email or Phone" />
-    <input type="password" id="passwordInput" placeholder="Password" />
-    
-    <!-- Tlačidlo na prihlásenie -->
-    <button onclick="login()">Log In</button>
+    <!-- Pokračovanie cez Google -->
+    <button class="google-btn">Pokračovať s Googlom</button>
+
+    <div class="alternative">
+      <p>ALEBO</p>
+    </div>
+
+    <!-- Formulár pre registráciu -->
+    <div class="form-step">
+      <input type="text" id="firstName" placeholder="Krstné meno" />
+      <input type="text" id="lastName" placeholder="Priezvisko (voliteľné)" />
+      <div>
+        <label for="birthMonth">Mesiac:</label>
+        <input type="text" id="birthMonth" placeholder="Mesiac" />
+      </div>
+      <div>
+        <label for="birthDay">Deň:</label>
+        <input type="text" id="birthDay" placeholder="Deň" />
+      </div>
+      <div>
+        <label for="birthYear">Rok:</label>
+        <input type="text" id="birthYear" placeholder="Rok" />
+      </div>
+
+      <input type="text" id="username" placeholder="Zadajte svoje používateľské meno" />
+      <input type="email" id="email" placeholder="Email" />
+      <input type="password" id="password" placeholder="Zadajte bezpečné heslo" />
+
+      <div>
+        <small>Heslo musí mať aspoň 8 znakov</small>
+      </div>
+
+      <div class="checkbox-container">
+        <input type="checkbox" id="agreeTerms" />
+        <label for="agreeTerms">Súhlasím s podmienkami</label>
+      </div>
+
+      <!-- Tlačidlo na pokračovanie -->
+      <button onclick="continueRegistration()">Pokračovať</button>
+    </div>
   </div>
 
   <script>
-    // Funkcia na prihlásenie
-    function login() {
-      const loginValue = document.getElementById('loginInput').value;
-      const password = document.getElementById('passwordInput').value;
+    // Funkcia na kontrolu registrácie
+    function continueRegistration() {
+      const firstName = document.getElementById('firstName').value;
+      const lastName = document.getElementById('lastName').value;
+      const birthMonth = document.getElementById('birthMonth').value;
+      const birthDay = document.getElementById('birthDay').value;
+      const birthYear = document.getElementById('birthYear').value;
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      const agreeTerms = document.getElementById('agreeTerms').checked;
 
-      if (loginValue && password) {
-        alert(`Successfully logged in with: ${loginValue}`);
+      // Kontrola, či sú všetky povinné polia vyplnené
+      if (firstName && username && email && password && agreeTerms) {
+        if (password.length < 8) {
+          alert('Heslo musí mať aspoň 8 znakov!');
+        } else {
+          alert(`Registrácia úspešná. Vitaj, ${firstName}!`);
+        }
       } else {
-        alert("Please enter your username/email/phone and password!");
+        alert('Prosím vyplňte všetky povinné polia!');
       }
-    }
-  </script>
-
-</body>
-</html>
 
