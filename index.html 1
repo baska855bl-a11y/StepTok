@@ -1,1 +1,249 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StepTok - Domov</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins', sans-serif;}
+    body {
+        min-height:100vh;
+        background: #0d0d2b;
+        overflow-x: hidden;
+        color: white;
+        position: relative;
+    }
 
+    /* Animated gradient blobs */
+    .blob {
+        position: absolute;
+        width: 400px;
+        height: 400px;
+        border-radius: 50%;
+        filter: blur(150px);
+        opacity: 0.7;
+        animation: moveBlob 15s infinite alternate;
+        mix-blend-mode: screen;
+        z-index:0;
+    }
+    .blob1 { background: #ff005c; top: -100px; left: -100px; animation-delay: 0s;}
+    .blob2 { background: #7a00ff; top: 100px; left: 200px; animation-delay: 3s;}
+    .blob3 { background: #00c8ff; top: 200px; left: -200px; animation-delay: 6s;}
+
+    @keyframes moveBlob {
+        0% { transform: translate(0,0) scale(1);}
+        50% { transform: translate(50px, -30px) scale(1.1);}
+        100% { transform: translate(-30px,50px) scale(0.9);}
+    }
+
+    /* Header */
+    header {
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:15px 20px;
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(8px);
+        position: sticky;
+        top:0;
+        z-index: 100;
+    }
+    .logo {
+        font-size:28px;
+        font-weight:600;
+        background: linear-gradient(90deg,#ff005c,#7a008c,#00c8ff);
+        -webkit-background-clip:text;
+        -webkit-text-fill-color:transparent;
+    }
+    nav a {
+        color:#fff;
+        margin-left:20px;
+        text-decoration:none;
+        font-weight:500;
+        transition: 0.3s;
+    }
+    nav a:hover { color:#ff95d0; }
+
+    /* Featured carousel */
+    .featured {
+        display:flex;
+        overflow-x:auto;
+        gap:20px;
+        padding:20px;
+        z-index: 10;
+        position: relative;
+    }
+    .featured-card {
+        flex:0 0 auto;
+        width:260px;
+        border-radius:15px;
+        overflow:hidden;
+        background: rgba(255,255,255,0.05);
+        backdrop-filter: blur(10px);
+        position:relative;
+        cursor: pointer;
+        transition: transform 0.3s;
+    }
+    .featured-card:hover { transform: scale(1.05); }
+    .featured-card img { width:100%; height:150px; object-fit:cover; border-bottom:1px solid #444;}
+    .featured-card .title {
+        position:absolute;
+        bottom:10px;
+        left:10px;
+        font-weight:600;
+        color:#ff95d0;
+        text-shadow: 1px 1px 5px #000;
+    }
+
+    /* Horizontal feed */
+    .feed {
+        display:flex;
+        overflow-x:auto;
+        gap:20px;
+        padding:20px;
+        z-index: 10;
+        position: relative;
+    }
+    .feed-card {
+        flex:0 0 auto;
+        width:300px;
+        border-radius:15px;
+        background: rgba(0,0,0,0.3);
+        overflow:hidden;
+        position:relative;
+        cursor: pointer;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .feed-card:hover { transform: scale(1.03); box-shadow: 0 0 25px rgba(255,0,92,0.5);}
+
+    .feed-card video, .feed-card img { width:100%; display:block; border-bottom:1px solid #333; border-radius: 15px 15px 0 0;}
+    .feed-card .info { padding:10px; position:relative; z-index:5; }
+    .feed-card .user { font-weight:600; margin-bottom:5px; }
+    .feed-card .desc { font-size:14px; color:#ccc; }
+
+    /* Hover action buttons */
+    .actions {
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        display:flex;
+        gap:15px;
+        opacity:0;
+        transition: opacity 0.3s;
+        z-index: 10;
+    }
+    .feed-card:hover .actions { opacity:1; }
+    .actions button {
+        background: rgba(0,0,0,0.6);
+        border:none;
+        color:#fff;
+        padding:10px 12px;
+        border-radius:50%;
+        cursor:pointer;
+        font-size:18px;
+        transition: transform 0.2s;
+    }
+    .actions button:hover { transform: scale(1.2); }
+
+    /* Scrollbar fix */
+    .feed::-webkit-scrollbar, .featured::-webkit-scrollbar { display:none; }
+
+    /* Footer */
+    footer {
+        padding:20px;
+        text-align:center;
+        background: rgba(0,0,0,0.3);
+        backdrop-filter: blur(8px);
+        margin-top:30px;
+        position: relative;
+        z-index: 10;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- Animated gradient blobs -->
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
+<!-- Header -->
+<header>
+    <div class="logo">StepTok</div>
+    <nav>
+        <a href="#">Domov</a>
+        <a href="#">Výzvy</a>
+        <a href="#">Tvorcovia</a>
+        <a href="#">Profil</a>
+        <a href="#">Odhlásiť sa</a>
+    </nav>
+</header>
+
+<!-- Featured carousel -->
+<div class="featured">
+    <div class="featured-card">
+        <img src="https://via.placeholder.com/260x150" alt="Výzva 1">
+        <div class="title">Trend 1</div>
+    </div>
+    <div class="featured-card">
+        <img src="https://via.placeholder.com/260x150" alt="Výzva 2">
+        <div class="title">Výzva 2</div>
+    </div>
+    <div class="featured-card">
+        <img src="https://via.placeholder.com/260x150" alt="Výzva 3">
+        <div class="title">Trend 3</div>
+    </div>
+</div>
+
+<!-- Horizontal feed -->
+<div class="feed">
+    <div class="feed-card">
+        <video src="https://www.w3schools.com/html/mov_bbb.mp4" autoplay muted loop></video>
+        <div class="actions">
+            <button>❤️</button>
+            <button>💬</button>
+            <button>↗️</button>
+        </div>
+        <div class="info">
+            <div class="user">@uzivatel1</div>
+            <div class="desc">Kombinácia videa a obrázkov #fun</div>
+        </div>
+    </div>
+
+    <div class="feed-card">
+        <img src="https://via.placeholder.com/300x200" alt="Post 2">
+        <div class="actions">
+            <button>❤️</button>
+            <button>💬</button>
+            <button>↗️</button>
+        </div>
+        <div class="info">
+            <div class="user">@uzivatel2</div>
+            <div class="desc">Mini fotogaléria #cool</div>
+        </div>
+    </div>
+
+    <div class="feed-card">
+        <video src="https://www.w3schools.com/html/movie.mp4" autoplay muted loop></video>
+        <div class="actions">
+            <button>❤️</button>
+            <button>💬</button>
+            <button>↗️</button>
+        </div>
+        <div class="info">
+            <div class="user">@uzivatel3</div>
+            <div class="desc">Video + obrázok kombinácia</div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    &copy; 2026 StepTok | Všetky práva vyhradené
+</footer>
+
+</body>
+</html>
